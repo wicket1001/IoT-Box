@@ -1,28 +1,23 @@
-import requests
 import json
-from requests.auth import HTTPBasicAuth
-from credential import *
+import random
 
-data = {
-    "select": [
-        "ch0",
-        "ch3",
-        "ch1"
-    ]
-}
+from ServerRequest import *
 
-url = "https://3iot.drei.at/api"
-suffix = "/1/customers/"+ cid + "/sites/" + sid + "/histdata0/youngest"
 
-suffix = "/1/customers/" + cid + "/sites"
+def handleResponse(response, verbosity=1):
+    if verbosity==3:
+        print(response.status_code)
+    if verbosity==2:
+        print(response.content)
+    if verbosity==1:
+        print(json.dumps(response.json(), indent=4))
 
-r = requests.get(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
-print(r.status_code)
 
-print(str(r.json()))
+def readGyro():
+    return random.random()
 
-parsed = json.loads(str(r.json()))
+r = queryLoggedInUserAndCustomerList()
+handleResponse(r)
 
-print(json.dumps(parsed, indent=4, short_keys=False))
 
 
