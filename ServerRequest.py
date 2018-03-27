@@ -105,12 +105,12 @@ def modifySitesConfiguration():
 
 #SitesTimeSeriesData
 def queryYoungestRawValues():
-    suffix = '/1/customers/th.drones@gmail.com/sites/VaHaReIOT/histdata0/youngest'
+    suffix = '/1/customers/'+cid+'/sites/'+sid+'/histdata0/youngest'
     data = {
         "select": [
             "Temperature",
-            "ch3",
-            "ch1"
+            "VoltageBattery",
+            "VoltageUSB"
         ]
     }
     return requests.get(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
@@ -132,15 +132,15 @@ def insertNewValuesHistoricalDataChannel():
     suffix = '/1/customers/' + cid + '/sites/' + sid +'/histdata0'
     data = {
         #"stamp": "201501011030",
-        "ch0": 1,
-        "myFieldName": 3.1,
-        "textField": "demo_text"
+        "Temperature": 12,
+        "VoltageBattery": 4.5,
+        "VoltageUSB": 1.2
     }
     return requests.post(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
 #Sites position data
 def queryYoungestPositionValues():
-    suffix = '/1/customer' + cid + '/sites/' + sid + '/pos/youngest/'
+    suffix = '/1/customers/' + cid + '/sites/' + sid + '/pos/youngest'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 #Manage users
@@ -149,9 +149,9 @@ def queryUserList():
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 def queryCustomersUserList():
-    suffix = '/1/customer' + cid + '/users/'
+    suffix = '/1/customers/' + cid + '/users/'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 def queryUsersProfile():
-    suffix = '/1/custeromers/' + cid + '/users/'
+    suffix = '/1/customers/' + cid + '/users/'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))

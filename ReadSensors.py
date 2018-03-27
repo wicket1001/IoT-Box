@@ -11,6 +11,7 @@ def handleResponse(response, verbosity=1):
         print(response.content)
     if verbosity==1:
         print(json.dumps(response.json(), indent=4))
+        # print(response.content)
 
 
 def readGyro():
@@ -26,6 +27,7 @@ handleResponse(r)
 
 r = queryYoungestRawValues()
 handleResponse(r)
+handleResponse(r, 3)
 
 # 20180217142556949
 # 201501011030
