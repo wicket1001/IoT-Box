@@ -1,0 +1,101 @@
+<table>
+    name  = config0                         
+    title = Configuration               
+    <field>
+        name       = field0             
+        alias      = RecordInterval     
+        title      = Record Interval    
+        byteofs    = 0                  
+        decpl      = 0                  
+        type       = u32 
+        units      = sec  
+        min        = 1               
+        default    = 60                      
+    </field>
+    <field>
+        name       = field1            
+        alias      = TransmissionInterval
+        title      = Transmission Interval
+        byteofs    = 4                  
+        decpl      = 0
+        type       = u32
+        units      = min
+        min        = 1
+        default    = 60
+        vscale     = 0.01666666667      
+    </field>
+    <field>
+        name       = field2             
+        alias      = TransmissionMode
+        title      = Transmission Mode
+        byteofs    = 8                  
+        decpl      = 0
+        type       = u8
+        default    = 0
+        editmask   = 0=Intervall;1=Wakeup;2=Online 
+    </field>
+</table>
+
+<split>
+    source = rm2mraw
+    target = histdata0
+	target=histdata1
+    key    = 00
+</split>
+<table>
+    name = histdata0
+    <field>
+        name    = ch0
+        alias   = VoltageBattery
+        title   = Battery Voltage
+        byteofs = 1
+        decpl   = 2
+        type    = s16
+        vscale  = 0.001
+        units   = V
+    </field>
+    <field>
+        name    = ch1
+        alias   = VoltageUSB
+        title   = USB Voltage
+        byteofs = 3
+        decpl   = 2
+        type    = s16
+        vscale  = 0.001
+        units   = V
+    </field>
+    <field>
+        name    = ch2
+        alias   = Temperature
+        title   = Temperature
+        byteofs = 5
+        decpl   = 1
+        type    = s16
+        vscale  = 0.1
+        units   = °C
+    </field>
+	<field>
+        name    = ch3
+        alias   = Humidity
+        title   = Humidity
+        byteofs = 7
+        decpl   = 1
+        type    = s16
+        vscale  = 0.1
+        units   = %
+    </field>
+</table>
+
+<table>
+    name = histdata1
+    <field>
+        name    = ch0
+        alias   = VoltageBattery
+        title   = Battery Voltage
+        byteofs = 1
+        decpl   = 2
+        type    = s16
+        vscale  = 0.001
+        units   = V
+    </field>
+</table>

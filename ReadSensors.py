@@ -16,8 +16,16 @@ def handleResponse(response, verbosity=1):
 def readGyro():
     return random.random()
 
-r = queryLoggedInUserAndCustomerList()
+
+setHigherTrustLevel()
+r = insertNewValuesHistoricalDataChannel()
+handleResponse(r, 3)
+
+r = querySitesBlueprint()
 handleResponse(r)
 
+r = queryYoungestRawValues()
+handleResponse(r)
 
-
+# 20180217142556949
+# 201501011030

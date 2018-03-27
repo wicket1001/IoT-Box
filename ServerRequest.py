@@ -38,16 +38,16 @@ def addNewCustomer():
     return requests.post(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
 def queryCustomersProfile():
-    suffix = '/1/customers' + cid
+    suffix = '/1/customers/' + cid
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 def modifyCustomerProfile():
     requiresHigherTrustLevel()
     suffix = '/1/customer' + cid
     data = {"street": "enter street",
-           "city": "enter city",
-           "note": "enter note"
-           }
+            "city": "enter city",
+            "note": "enter note"
+            }
     return requests.put(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
 def sendEmailOnBehalfThisCustomer():
@@ -78,42 +78,45 @@ def sendSMSBehalfThisCostumer():
     return requests.post(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
 #Manage a site
-
 def queryCustomersListOfSites():
-    suffix = '/1/customer' + cid + '/sites/'
+    suffix = '/1/customers/' + cid + '/sites'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 def querySitesBlueprint():
-    suffix = '/1/customer' +cid + '/sites/' + sid + '/blueprint/'
+    suffix = '/1/customers/' +cid + '/sites/' + sid + '/blueprint'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 #Manage a device
 
 #Sites status&configuration data
-
 def querySitesConfiguration():
-    suffix = '/1/costumer' + cid + '/sites/' + sid + '/config0/'
+    suffix = '/1/customers/' + cid + '/sites/' + sid + '/config0'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 def modifySitesConfiguration():
-    suffix = '/1/customers/' + cid + '/config0/'
-    return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
+    requiresHigherTrustLevel()
+    suffix = '/1/customers/' + cid + '/sites/' + sid + '/config0'
+    data = {
+        "transmissionmode": 1,
+        "stamp": "20180217124628782"
+        # "BinaryField": "00ff44bc78"
+    }
+    return requests.put(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
 #SitesTimeSeriesData
-
 def queryYoungestRawValues():
-    suffix = '/1/customer' + cid + '/sites/' + sid + '/histdata0/youngest'
+    suffix = '/1/customers/th.drones@gmail.com/sites/VaHaReIOT/histdata0/youngest'
     data = {
         "select": [
-            "ch0",
+            "Temperature",
             "ch3",
             "ch1"
         ]
     }
     return requests.get(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
-def queryTimeWindowWithRawValues():
-    suffix = '/1/costomers' + cid + '/sites/' + sid + '/histdata0'
+def queryTimeWindowWithRawValues(): # TODO missing or invalid parameters
+    suffix = '/1/customers/' + cid + '/sites/' + sid + '/histdata0'
     data = { "select": [
         "ch0",
         "ch3",
@@ -125,9 +128,10 @@ def queryTimeWindowWithRawValues():
     return requests.get(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
 def insertNewValuesHistoricalDataChannel():
-    suffix = '/1/customers' + cid + '/siter/' + sid +'/histdata0'
+    requiresHigherTrustLevel()
+    suffix = '/1/customers/' + cid + '/sites/' + sid +'/histdata0'
     data = {
-        "stamp": "201501011030",
+        #"stamp": "201501011030",
         "ch0": 1,
         "myFieldName": 3.1,
         "textField": "demo_text"
@@ -135,13 +139,11 @@ def insertNewValuesHistoricalDataChannel():
     return requests.post(url + suffix, json=data, auth=HTTPBasicAuth(cid, passwd))
 
 #Sites position data
-
 def queryYoungestPositionValues():
     suffix = '/1/customer' + cid + '/sites/' + sid + '/pos/youngest/'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
 
 #Manage users
-
 def queryUserList():
     suffix = '/1/users'
     return requests.get(url + suffix, auth=HTTPBasicAuth(cid, passwd))
