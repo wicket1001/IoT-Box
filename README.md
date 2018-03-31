@@ -9,6 +9,7 @@ Die Outdoorstation kommuniziert mit der Indoorstation, die dann die Daten auf de
 ### Voraussetzungen
 
 Die Indoorstation bedarf einem Raspberry Pi und die Outdoorstation eines ESPs.
+An beide Stationen müssen über I2C jeweils ein MLP115A2 (Druck, Temperatur) und ein BME280 (Luftfeuchtigkeit, Temperatur) angeschlossen werden.
 
 ### Authentifikation
 
