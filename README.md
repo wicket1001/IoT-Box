@@ -4,7 +4,7 @@ Das ist die Steuerung des Indoor- und Outdoormoduls der IoT-Box für den Wettbew
 
 ## Getting Started
 
-Die Outstation kommuniziert mit der Indoorstation, die dann die Daten auf den 3-Server pusht.
+Die Outdoorstation kommuniziert mit der Indoorstation, die dann die Daten auf den 3-Server pusht.
 
 ### Voraussetzungen
 
@@ -19,17 +19,17 @@ cid = "customerId@mail.com" # Customer ID
 uid = "UserId" # User ID
 sid = "SiteId" # Site ID
 passwd = "Password12345" # Password
-did = "DevideId" # Device ID
+did = "DeviceId" # Device ID
 ```
 
 ## Installation
 
-Auf dem Raspberry muss man den Code mittels dem Befehl der unten angeführt ist starten:
+Auf dem Raspberry muss der Code mittels des unten angeführten Befehles gestarten werden:
 ```
 sudo python ReadSensors.py
 ```
 
-Den Code der Outdoorstation "Outdoorstation.ino" muss man mittels der Arduino IDE ausführen.
+Der Code der Outdoorstation "Outdoorstation.ino" muss mittels der Arduino IDE hochgeladen werden.
 
 ## Autoren
 
