@@ -103,10 +103,6 @@ def handleResponse(response, verbosity=1):
 
 
 
-def readGyro():
-    return random.random()
-
-
 setHigherTrustLevel()
 r = insertNewValuesHistoricalDataChannel()
 handleResponse(r, 3)
